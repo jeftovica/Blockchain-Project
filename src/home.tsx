@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import {Add} from "@mui/icons-material";
+import {Add, Payments} from "@mui/icons-material";
 
 export const HomePage = () => {
     const web3 = new Web3(window.ethereum);
@@ -308,6 +308,7 @@ export const HomePage = () => {
                 tracks = await contract.methods.getLifeGuardTracks().call({from: accounts[0]});
             }
         }
+
         setTracks(tracks)
     }
     async function getOwnerInfo() {
@@ -425,7 +426,7 @@ export const HomePage = () => {
         </Box>
         <Grid container spacing={2}>
             {tracks!=undefined && tracks.map((track) => <Box m={2} key={track[0]} p="10px" display="flex" flexDirection="column" width="300px"
-                                        height="150px" borderRadius="12px"
+                                        height="200px" borderRadius="12px"
                                         sx={{backgroundColor: "white", justifyContent: 'space-between'}}>
                 <Box>
                     <Typography mb={0} fontSize="35px" color="black" textAlign="left"
@@ -434,6 +435,12 @@ export const HomePage = () => {
                         <LocationOnIcon/>
                         <Typography fontSize="25px" color="black" textAlign="left"
                                     fontWeight="40">{track[2]}</Typography>
+
+                    </Box>
+                    <Box alignItems="center" display="flex" flexDirection="row">
+                        <Payments/>
+                        <Typography fontSize="25px" color="black" textAlign="left"
+                                    fontWeight="40">{track[3].toString()}</Typography><Typography fontSize="20px" color="black" textAlign="left"fontWeight="40"><sub> ETH</sub></Typography>
 
                     </Box>
                 </Box>
